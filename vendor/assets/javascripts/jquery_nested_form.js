@@ -24,8 +24,9 @@ jQuery(function($) {
         var parentNames = context.match(/[a-z_]+_attributes/g) || [];
         var parentIds   = context.match(/(new_)?[0-9]+/g) || [];
 
-        for(var i = 0; i < parentNames.length; i++) {
-          if(parentIds[i]) {
+	// limit of loop should be parentNames.length-1 since we're ignoring innermost child
+        for(var i = 0; i < parentNames.length-1; i++) {
+          if(i === 0 && parentIds[i] || parentIds[i] && parentIds[i-1]) {
             content = content.replace(
               new RegExp('(_' + parentNames[i] + ')_.+?_', 'g'),
               '$1_' + parentIds[i] + '_');
