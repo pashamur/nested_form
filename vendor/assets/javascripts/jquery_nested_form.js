@@ -26,7 +26,7 @@ jQuery(function($) {
 
 	// limit of loop should be parentNames.length-1 since we're ignoring innermost child
         for(var i = 0; i < parentNames.length-1; i++) {
-          if(i === 0 && parentIds[i] || parentIds[i] && parentIds[i-1]) {
+          if(parentIds[i]) {
             content = content.replace(
               new RegExp('(_' + parentNames[i] + ')_.+?_', 'g'),
               '$1_' + parentIds[i] + '_');
